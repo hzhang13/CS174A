@@ -77,23 +77,27 @@ def select(command):
     printResult(sql)
 
 def printResult(sql):
-  cursor.execute(sql)
-  alldata = cursor.fetchall()
-  if alldata:
-    for rec in alldata:
-      if len(rec) == 3:
-        dec_salary = dec(rec[2])
-        print("(%d, %d, %s)" % (rec[0], rec[1], dec_salary))
-      elif len(rec) == 2:
-        dec_salary = dec(rec[1])
-        print("age: %d, SUM of salary: %s" % (rec[0], dec_salary))
-      else:
-        dec_salary = dec(rec[0])
-        if dec_salary == "0":
-          dec_salary = "NULL"
-        print("SUM of salary: %s" % dec_salary)
+  try:
+    cursor.execute(sql)
+  except mysql.connector.Error as err:
+    print("ERROR\nMySQL Error: {}\n".format(err))
   else:
-    print("The employee(s) doesn't exist")
+    alldata = cursor.fetchall()
+    if alldata:
+      for rec in alldata:
+        if len(rec) == 3:
+          dec_salary = dec(rec[2])
+          print("(%d, %d, %s)" % (rec[0], rec[1], dec_salary))
+        elif len(rec) == 2:
+          dec_salary = dec(rec[1])
+          print("age: %d, SUM of salary: %s" % (rec[0], dec_salary))
+        else:
+          dec_salary = dec(rec[0])
+          if dec_salary == "0":
+            dec_salary = "NULL"
+        print("SUM of salary: %s" % dec_salary)
+    else:
+      print("The employee(s) doesn't exist")
 
 def printAVG(sql):
   cursor.execute(sql)
@@ -125,8 +129,8 @@ def sql_generate(sql, command):
         sql = sql + command[where_start : len(command)]
   if group_by_start != -1:
     sql += "GROUP BY age"
-  if having_start != -1:
-    sql = sql + " " + command[having_start : len(command)]
+    if having_start != -1:
+      sql = sql + " " + command[having_start : len(command)]
   return sql
 
 def enc(salary):
