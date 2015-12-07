@@ -1,0 +1,14 @@
+Crypto - Xuelun Gong, Haojun Zhang
+
+1. Install gmp library: brew install gmp
+
+2. Install paillier library:
+2.1 ‘cd’ to the directory containing the package's source code and type ‘./configure' to configure the package for your system. 
+2.2 Type ‘make’ to compile the package.
+2.3 Type ‘make install' to install the programs and any data files and documentation.
+2.4 Type ’cp libpaillier.a /usr/local/lib libpaillier.a’ to enable compilation with paillier library.
+
+3. Use UDF
+3.1 Type ‘gcc -fPIC -shared SUM_HE.c -o udf_sum.so -lgmp -lpaillier -I/usr/include/mysql/‘ to compile the shared-library
+3.2 Type ‘sudo cp udf_sum.so /usr/local/mysql/lib/plugin’ to copy udf_sum.so to a directory where MySQL can find it and dynamically load it
+3.3 Execute the SQL command ‘CREATE AGGREGATE FUNCTION SUM_HE RETURNS STRING SONAME ‘udf_sum.so’ to add a new UDF

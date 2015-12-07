@@ -5,11 +5,11 @@ import mysql.connector
 
 # Fill this in with your own configuration values
 config = {
-  'user': 'bar',
+  'user': 'crypto',
   'password': 'shujuku174', 
   'host': '54.183.222.108', # Localhost. If your MySQL Server is running on your own computer.
   'port': '3306', # Default port on Windows/Linux is 3306. On Mac it may be 3307.
-  'database': 'airport',
+  'database': 'project',
 }
 
 PUBLIC_KEY = "a4778d390098957740d4c69b6ba06f35"
