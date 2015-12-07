@@ -23,7 +23,6 @@ except mysql.connector.Error as err:
   sys.exit(1)
 
 def execute(query, values):
-  your_query = query % values
   print("Executing: {} ... ".format(query % values), end="")
   try:
     cursor.execute(query, values)
