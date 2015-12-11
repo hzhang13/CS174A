@@ -95,7 +95,7 @@ def printResult(sql):
           dec_salary = dec(rec[0])
           if dec_salary == "0":
             dec_salary = "NULL"
-        print("SUM of salary: %s" % dec_salary)
+          print("SUM of salary: %s" % dec_salary)
     else:
       print("The employee(s) doesn't exist")
 

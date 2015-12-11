@@ -2,10 +2,6 @@
 #include<gmp.h>
 #include"paillier.c"
 int main(int argc, char** argv){
-//    FILE *dec;
-//    dec = fopen("encf","r");
-//    char enc_st[36];
-//    fgets(enc_st, 33, dec);
     paillier_pubkey_t* pubkey = paillier_pubkey_from_hex(argv[2]);
     paillier_prvkey_t* prikey = paillier_prvkey_from_hex(argv[3],pubkey);
     paillier_ciphertext_t* enc_res;

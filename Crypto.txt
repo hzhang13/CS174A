@@ -12,3 +12,7 @@ Crypto - Xuelun Gong, Haojun Zhang
 3.1 Type ‘gcc -fPIC -shared SUM_HE.c -o udf_sum.so -lgmp -lpaillier -I/usr/include/mysql/‘ to compile the shared-library
 3.2 Type ‘sudo cp udf_sum.so /usr/local/mysql/lib/plugin’ to copy udf_sum.so to a directory where MySQL can find it and dynamically load it
 3.3 Execute the SQL command ‘CREATE AGGREGATE FUNCTION SUM_HE RETURNS STRING SONAME ‘udf_sum.so’ to add a new UDF
+
+4.Compile encryption program and decryption program
+4.1 Type ‘gcc enc.c -o enc -lgmp -lpaillier’ to compile encryption program
+4.2 Type ‘gcc dec.c -o dec -lgmp -lpaillier’ to compile decryption program
